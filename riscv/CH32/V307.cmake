@@ -19,12 +19,19 @@ if(NOT (TARGET CH32::V307))
     target_compile_options(CH32::V307 INTERFACE $<$<COMPILE_LANGUAGE:CXX>:-fno-exceptions -fno-rtti -fno-use-cxa-atexit -fno-threadsafe-statics>)
 
     target_compile_options(CH32::V307 INTERFACE -march=rv32imafc -mabi=ilp32f -mcmodel=medany -msmall-data-limit=8 -mno-save-restore)
-    target_compile_options(CH32::V307 INTERFACE -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -fno-common -fsingle-precision-constant)
-    
+    target_compile_options(CH32::V307 INTERFACE -Xlinker -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -fno-common -fsingle-precision-constant)
+
+    target_compile_options(CH32::V307 INTERFACE $<$<COMPILE_LANGUAGE:ASM>:-x assembler-with-cpp>)
 
     target_link_options(CH32::V307 INTERFACE 
         --sysroot="${TOOLCHAIN_SYSROOT}"
         ${COMMON_COMPILE_FLAGS}
-        ${C_CXX_COMPILE_FLAGS}         
+        ${C_CXX_COMPILE_FLAGS} 
+        LINKER:-gc-sections 
+    )
+
+    target_compile_definitions(CH32::V307 INTERFACE 
+        "__weak=__attribute__((weak))"
+        "__packed=__attribute__((__packed__))"
     )
 endif()
