@@ -1,5 +1,5 @@
-set(MCU_ARCH rv32imafc )
-set(MCU_FLOAT_ABI ilp32f )
+set(MCU_ARCH rv32imac )
+set(MCU_FLOAT_ABI ilp32 )
 
 
 set(COMMON_COMPILE_FLAGS -march=${MCU_ARCH}  -mabi=${MCU_FLOAT_ABI} -msmall-data-limit=8 )
