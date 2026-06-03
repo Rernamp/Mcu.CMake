@@ -35,3 +35,5 @@ if(NOT (TARGET CH32::V307))
         "__packed=__attribute__((__packed__))"
     )
 endif()
+
+include(gcc_common)
