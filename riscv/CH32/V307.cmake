@@ -3,7 +3,7 @@ set(MCU_FLOAT_ABI ilp32 )
 
 
 set(COMMON_COMPILE_FLAGS -march=${MCU_ARCH}  -mabi=${MCU_FLOAT_ABI} -msmall-data-limit=8 )
-set(C_CXX_COMPILE_FLAGS  -ffunction-sections -fdata-sections -fsigned-char -g -fmessage-length=0)
+set(C_CXX_COMPILE_FLAGS  -ffunction-sections -fdata-sections -fsigned-char -g -fmessage-length=0 -mno-save-restore)
 
 if(NOT (TARGET CH32::V307))
     add_library(CH32::V307 INTERFACE IMPORTED)
